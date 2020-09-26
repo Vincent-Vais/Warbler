@@ -1,20 +1,21 @@
 import React from "react";
 
-import { Switch, Route, withRouter, Redirect } from "react-router-dom";
+import { Switch, Route, withRouter } from "react-router-dom";
 
 import { connect } from "react-redux";
 
-import { removeError } from "../store/actions/error";
+import { removeError, addError } from "../store/actions/error";
 
 import Homepage from "../components/Homepage";
 import Authform from "../components/Authform";
 import withAuth from "../hocs/withAuth";
 import MessageForm from "../containers/MessageForm";
+import DirectMessages from "../components/DirectMessages";
 
 import { authUser } from "../store/actions/auth";
 
 const Main = (props) => {
-  const { authUser, errors, removeError, currentUser } = props;
+  const { authUser, errors, removeError, addError, currentUser } = props;
   return (
     <div className="container">
       <Switch>
@@ -33,6 +34,7 @@ const Main = (props) => {
               onAuth={authUser}
               errors={errors}
               removeError={removeError}
+              addError={addError}
               {...props}
             />
           )}
@@ -48,6 +50,7 @@ const Main = (props) => {
               onAuth={authUser}
               errors={errors}
               removeError={removeError}
+              addError={addError}
               {...props}
             />
           )}
@@ -56,6 +59,7 @@ const Main = (props) => {
           path="/users/:id/messages/new"
           component={withAuth(MessageForm)}
         />
+        <Route path="/messages" component={withAuth(DirectMessages)} />
       </Switch>
     </div>
   );
@@ -67,5 +71,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default withRouter(
-  connect(mapStateToProps, { authUser, removeError })(Main)
+  connect(mapStateToProps, { authUser, removeError, addError })(Main)
 );

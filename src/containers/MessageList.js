@@ -10,7 +10,7 @@ class MessageList extends Component {
   render() {
     const { messages, deleteMessage, currentUser } = this.props;
     return (
-      <div className="row col-sm-8">
+      <div className="row col-sm-7">
         <div className="offset-1 col-sm-10">
           <ul className="list-group" id="messages">
             {messages.map(({ _id, createdAt, text, user }) => (

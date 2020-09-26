@@ -12,7 +12,7 @@ const MessageItem = ({
   isCorrectUser,
 }) => (
   <div>
-    <li className="list-group-item">
+    <li className="list-group-item" style={{ position: "relative" }}>
       <img
         src={profileImageUrl || DefaultProfileImage}
         alt={username}
@@ -29,7 +29,11 @@ const MessageItem = ({
         </span>
         <p>{children}</p>
         {isCorrectUser && (
-          <button className="btn btn-danger" onClick={deleteMessage}>
+          <button
+            className="btn btn-danger"
+            onClick={deleteMessage}
+            style={{ position: "absolute", top: "0.5rem", right: "1rem" }}
+          >
             X
           </button>
         )}

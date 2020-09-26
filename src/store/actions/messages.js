@@ -32,7 +32,6 @@ export const fetchMessages = () => {
   return (dispatch) =>
     apiCall("get", "api/messages")
       .then((res) => {
-        console.log(res);
         dispatch(loadMessages(res));
       })
       .catch((err) => dispatch(addError(err.message)));
@@ -42,7 +41,6 @@ export const postNewMessage = (text) => {
   return (dispatch, getState) => {
     const { currentUser } = getState();
     const id = currentUser.user.id;
-    console.log(id);
     return apiCall("post", `/api/users/${id}/messages`, { text })
       .then((res) => {
         dispatch(addMessage(res));

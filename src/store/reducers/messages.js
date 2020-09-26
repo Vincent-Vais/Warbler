@@ -7,7 +7,9 @@ const messages = (state = [], action) => {
     case REMOVE_MESSAGE:
       return state.filter((message) => message._id !== action.id);
     case ADD_MESSAGE:
-      return [action.message, ...state];
+      return state.includes(action.message)
+        ? state
+        : [action.message, ...state];
     default:
       return state;
   }

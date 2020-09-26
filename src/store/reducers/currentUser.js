@@ -1,4 +1,4 @@
-import { SET_CURRENT_USER } from "../actionTypes";
+import { SET_CURRENT_USER, CURRENT_USER_FETCHED } from "../actionTypes";
 
 const DEFAULT_STATE = {
   isAuthenticated: false,
@@ -12,6 +12,12 @@ export default (state = DEFAULT_STATE, action) => {
         ...state,
         isAuthenticated: !!Object.keys(action.user).length,
         user: action.user,
+      };
+    case CURRENT_USER_FETCHED:
+      console.log(action.payload);
+      return {
+        ...state,
+        user: action.payload,
       };
     default:
       return state;
